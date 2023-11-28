@@ -39,21 +39,21 @@ from mistyPy.Events import Events
 
 
 def start_skill():
-    misty.register_event("initTTSComplete", Events.TextToSpeechComplete, keep_alive=False, callback_function=tts_intro_completed)
+    print("starting")
+    misty.register_event(Events.TextToSpeechComplete, "initTTSComplete", keep_alive=False, callback_function=tts_intro_completed)
 
     misty.display_image("e_defaultcontent.jpg")
-    misty.move_head(0, 0, 0, 85)
     misty.speak("I'd like to show you an image and have you tell me what you see.", None, None, None, True, "tts-content")
 
 def tts_intro_completed(event):
     misty.display_image("inkblot.jpg")
     # keep_alive defaults to false
-    misty.register_event("whatDoYouSeeTTSComplete", Events.TextToSpeechComplete, callback_function=tts_what_do_you_see_completed)
+    misty.register_event(Events.TextToSpeechComplete, "whatDoYouSeeTTSComplete", callback_function=tts_what_do_you_see_completed)
     misty.speak("What do you see when you look at this image?", None, None, None, True, "tts-content")
 
 def tts_what_do_you_see_completed(event):
-    misty.register_event("VoiceRecord", Events.VoiceRecord, callback_function=voice_record_complete)
-    misty.capture_speech_azure(True, 2000, 15000, False, False, "en-us", "<azure_cognitive_services_key>", "eastus")
+    misty.register_event(Events.VoiceRecord, "VoiceRecord", callback_function=voice_record_complete)
+    misty.capture_speech(True, 2000, 15000)
 
 def voice_record_complete(event):
     if "message" in event:
@@ -61,9 +61,9 @@ def voice_record_complete(event):
         misty_heard = parsed_message["speechRecognitionResult"]
         print(f"Misty heard: {misty_heard}")
     # do something with this data
-    misty.display_image("e_defaultcontent.jpg")
+    misty.display_image("https://i.natgeofe.com/k/9acd2bad-fb0e-43a8-935d-ec0aefc60c2f/monarch-butterfly-grass_3x2.jpg", isURL=True)
     misty.move_head(-30, 20, -50, 85, None, None)
-    misty.register_event("finalTTSComplete", Events.TextToSpeechComplete, callback_function=tts_all_i_ever_see)
+    misty.register_event(Events.TextToSpeechComplete, "finalTTSComplete", callback_function=tts_all_i_ever_see)
     misty.speak("That's interesting. All I ever see is a butterfly.", None, None, None, True, "tts-content")
 
 def tts_all_i_ever_see(event):
@@ -71,6 +71,7 @@ def tts_all_i_ever_see(event):
 
 
 if __name__ == "__main__":
-    ip_address = "192.168.1.12"
+    ip_address = "192.168.2.92"
     misty = Robot(ip_address)
+    misty.set_default_volume(20)
     start_skill()
