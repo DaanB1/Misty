@@ -3,8 +3,11 @@ from characterai import PyCAI
 class CharAI():
 
     def __init__(self):
-        self.client = PyCAI("0a38a9ea1077724b91aefae04030556a49808d15")  # my account token
-        self.chat = self.client.chat.get_chat("YU_x3uvz4KYFJbVGDHIlmMcsEJp5y1VlKSsXmr1U79k")  # therapist character
+        self.token = "0a38a9ea1077724b91aefae04030556a49808d15"  # my account token
+        self.character = "xSKyVniEtlqVGxoCsviIErfnESGCLoRz8LXkdpqKPLg" # misty's character
+        self.client = PyCAI(self.token)
+        #self.chat = self.client.chat.get_chat(self.character)
+        self.chat = self.client.chat.new_chat(self.character)
         self.participants = self.chat['participants']
         if not self.participants[0]['is_human']:
             self.tgt = self.participants[0]['user']['username']
