@@ -3,6 +3,7 @@ from mistyPy.Events import Events
 from charai import CharAI
 from ttsazure import CustomSpeak
 from deepface import DeepFace
+from script import Script
 import numpy as np
 import cv2
 import time
@@ -12,10 +13,14 @@ import base64
 azure_key = "5cea5747535f427b889651b335da74f7"
 azure_region = "westeurope"
 misty = Robot("192.168.2.92")
-misty.set_default_volume(20)
+misty.set_default_volume(30)
+
+script = Script()
+settings = {"useScript": True, "useMaleVoice": True}
 
 
-speak = CustomSpeak(misty, azure_key, azure_region) #for custom voice
+
+speak = CustomSpeak(misty, azure_key, azure_region, male=settings["useMaleVoice"]) #for custom voice
 #speak = misty #for built in voice
 
 # misty's position
@@ -52,9 +57,19 @@ def voice_record_complete( event):
             return
         result = message["speechRecognitionResult"]
         print(f"misty heard: {result}")
-        response = charAI.get_response(result)
+
+        if settings["useScript"]:
+            response = result
+            if "ja" in result.lower():
+                response = "JA"
+            elif "nee" in result.lower():
+                response = "NEE"
+            script.next_state(response)
+            speak.speak(script.get_text())
+        else:
+            response = charAI.get_response(result)
+            speak.speak(response, utteranceId="utterance")
         print(f"misty's response: {response}")
-        speak.speak(response, utteranceId="utterance")
 
 
 def look_at_audio(event):
@@ -156,9 +171,9 @@ def start_session():
     #misty.register_event(Events.SourceTrackDataMessage, "audiolocalization", keep_alive=True, debounce=2000, callback_function=look_at_audio)
     misty.register_event(Events.IMU, "imu", keep_alive=True, debounce=1000, callback_function=update_position_body)
     print("starting session")
+    speak.speak(script.get_text())
     misty.start_face_detection()
-    speak.speak("Hallo, ik ben Misty! Hoe gaat het met jou?", utteranceId="utterance")
-    #emotion_recognition(True)
+
 
 start_session()
-#speak.test()
+

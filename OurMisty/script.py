@@ -1,28 +1,28 @@
 from mistyPy.Robot import Robot
+import json
 
 
 class Script():
 
     def __init__(self):
-        self.messageList = []
-        self.index = 0
+        with open("script.json", "r") as f:
+            self.script = json.load(f)
+            self.state = "start"
+            self.name = None
 
-    def get_next(self):
-        if self.index == len(self.messageList):
-            raise Exception("Reached end of script")
-        message = self.messageList[self.index]
-        self.index += 1
-        return message
+    def get_text(self):
+        print("getting text")
+        return self.script[self.state]["message"].format(name=self.name)
 
-    def add_message(self, message):
-        self.messageList.append(message)
+    def next_state(self, response):
+        print("updating state")
+        if self.state == "start" or self.state == "wrong_name":
+            self.name = response
+            self.state = "name_given"
+        else:
+            for option in self.script[self.state]["options"]:
+                if option["response"] in response:
+                    self.state = option["next"]
+                    return
+            print("NO STATE FOUND")
 
-    def restart(self):
-        self.index = 0
-
-    def load_default_script(self):
-        self.messageList = []
-        self.index = 0
-        self.add_message("Hallo. Ik ben misty, hoe gaat het met jou?")
-        self.add_message("Dat is fijn om te horen! Wat zijn je hobbies?")
-        self.add_message("Leuk! Ik zelf houd van schaken.")

@@ -5,11 +5,14 @@ import os
 
 class CustomSpeak():
 
-    def __init__(self, misty, speech_key, service_region):
+    def __init__(self, misty, speech_key, service_region, male=True):
         self.audiofile = "outputaudio.wav"
         speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
         # Set the voice name, refer to https://aka.ms/speech/voices/neural for full list.
-        speech_config.speech_synthesis_voice_name = "nl-NL-MaartenNeural"
+        if male:
+            speech_config.speech_synthesis_voice_name = "nl-NL-MaartenNeural"
+        else:
+            speech_config.speech_synthesis_voice_name = "nl-NL-FennaNeural"
         self.speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=None)
         self.misty = misty
 

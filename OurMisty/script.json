@@ -1,0 +1,73 @@
+{
+  "start": {
+    "message": "Hallo! Wat leuk dat je even de tijd neemt om met me te praten. Mijn naam is Misty, wat is jouw naam?",
+    "options": [
+      {
+        "response": "{name}",
+        "next": "name_given"
+      }
+    ]
+  },
+  "wrong_name": {
+    "message": "Oh, wat is je naam dan?",
+    "options": [
+      {
+        "response": "{name}",
+        "next": "name_given"
+      }
+    ]
+  },
+  "name_given": {
+    "message": "Is je naam {name}?",
+    "options": [
+      {
+        "response": "JA",
+        "next": "meet_at_university"
+      },
+      {
+        "response": "NEE",
+        "next": "wrong_name"
+      }
+    ]
+  },
+  "meet_at_university": {
+    "message": "Leuk je te ontmoeten {name}! Studeer jij aan de Radboud Universiteit?",
+    "options": [
+      {
+        "response": "JA",
+        "next": "enjoy_studies"
+      },
+      {
+        "response": "NEE",
+        "next": "study_location"
+      }
+    ]
+  },
+  "study_location": {
+    "message": "Waar studeer je dan?",
+    "options": [
+      {
+        "response": "",
+        "next": "enjoy_studies"
+      }
+    ]
+  },
+  "enjoy_studies": {
+    "message": "Interessant! Heb je het naar je zin in je studie?",
+    "options": [
+      {
+        "response": "JA",
+        "next": "future_plans"
+      },
+      {
+        "response": "NEE",
+        "next": "future_plans"
+      }
+    ]
+  },
+  "future_plans": {
+    "message": "Duidelijk! Dankjewel voor je antwoord, ik weet genoeg. Nogmaals bedankt voor het gesprek, en tot ziens!",
+    "options": []
+  }
+}
+
