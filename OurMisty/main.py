@@ -12,7 +12,7 @@ import base64
 azure_key = "5cea5747535f427b889651b335da74f7"
 azure_region = "westeurope"
 misty = Robot("192.168.2.92")
-misty.set_default_volume(15)
+misty.set_default_volume(20)
 
 
 speak = CustomSpeak(misty, azure_key, azure_region) #for custom voice
@@ -97,7 +97,7 @@ def detect_emotion_basic():
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     analysis = DeepFace.analyze(img, actions=("emotion"))
     emotion = analysis[0]["dominant_emotion"]
-    #display_emotion(emotion) #mimic detected emotion
+    display_emotion(emotion) #mimic detected emotion
     print(emotion)
 
 def display_emotion(emotion):
@@ -153,7 +153,7 @@ def start_session():
     misty.register_event(Events.TextToSpeechComplete, "ttscomplete2", keep_alive=True, callback_function=tts_complete)
     misty.register_event(Events.ActuatorPosition, "actuatorposition", keep_alive=True, callback_function=update_position_head)
     misty.register_event(Events.FaceRecognition, "facedetection", keep_alive=True, debounce=1000, callback_function=look_at_face)
-    misty.register_event(Events.SourceTrackDataMessage, "audiolocalization", keep_alive=True, debounce=2000, callback_function=look_at_audio)
+    #misty.register_event(Events.SourceTrackDataMessage, "audiolocalization", keep_alive=True, debounce=2000, callback_function=look_at_audio)
     misty.register_event(Events.IMU, "imu", keep_alive=True, debounce=1000, callback_function=update_position_body)
     print("starting session")
     misty.start_face_detection()
