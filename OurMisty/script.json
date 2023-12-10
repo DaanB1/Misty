@@ -9,7 +9,7 @@
     ]
   },
   "wrong_name": {
-    "message": "Oh, wat is je naam dan?",
+    "message": "Sorry, dan heb ik je verkeerd verstaan. Kan je dat herhalen?",
     "options": [
       {
         "response": "{name}",
@@ -27,6 +27,27 @@
       {
         "response": "NEE",
         "next": "wrong_name"
+      },
+      {
+        "response": "",
+        "next": "yes_or_no_name"
+      }
+    ]
+  },
+  "yes_or_no_name": {
+    "message": "Sorry, geef alsjeblieft antwoord met 'ja' of 'nee'",
+    "options": [
+      {
+        "response": "JA",
+        "next": "meet_at_university"
+      },
+      {
+        "response": "NEE",
+        "next": "wrong_name"
+      },
+      {
+        "response": "",
+        "next": "yes_or_no_name"
       }
     ]
   },
@@ -35,7 +56,7 @@
     "options": [
       {
         "response": "JA",
-        "next": "enjoy_studies"
+        "next": "explain_studies"
       },
       {
         "response": "NEE",
@@ -52,16 +73,64 @@
       }
     ]
   },
+  "explain_studies": {
+    "message": "Wat leuk! Leg eens wat uit over de studie die je doet?",
+    "options": [
+      {
+        "response": "",
+        "next": "enjoy_studies"
+      }
+    ]
+  },
   "enjoy_studies": {
     "message": "Interessant! Heb je het naar je zin in je studie?",
     "options": [
       {
         "response": "JA",
-        "next": "future_plans"
+        "next": "good"
       },
       {
         "response": "NEE",
-        "next": "future_plans"
+        "next": "compassion"
+      },
+      {
+        "response": "",
+        "next": "yes_or_no_study"
+      }
+    ]
+  },
+  "yes_or_no_study": {
+    "message": "Sorry, geef alsjeblieft antwoord met 'ja' of 'nee'",
+    "options": [
+      {
+        "response": "JA",
+        "next": "good"
+      },
+      {
+        "response": "NEE",
+        "next": "compassion"
+      },
+      {
+        "response": "",
+        "next": "yes_or_no_study"
+      }
+    ]
+  },
+  "good": {
+    "message": "Goed om te horen! Dat is belangrijk voor een goed verloop van je studie. Heb je al een idee wat je wilt gaan doen na je studie?",
+    "options": [
+      {
+        "response": "",
+        "next": "end"
+      }
+    ]
+  },
+  "compassion": {
+    "message": "Wat jammer, ik hoop voor je dat het in de toekomst beter wordt. Heb je al een idee wat je wilt gaan doen na je studie?",
+    "options": [
+      {
+        "response": "",
+        "next": "end"
       }
     ]
   },

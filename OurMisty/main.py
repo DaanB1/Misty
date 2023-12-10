@@ -16,7 +16,7 @@ misty = Robot("192.168.2.92")
 misty.set_default_volume(30)
 
 script = Script()
-settings = {"useScript": True, "useMaleVoice": True}
+settings = {"useScript": True, "useMaleVoice": True, "mimicEmotion": True}
 
 
 
@@ -48,7 +48,8 @@ def tts_complete(event):
     print("tts", event)
     misty.capture_speech_azure(speechRecognitionLanguage="nl-NL", azureSpeechKey=azure_key, azureSpeechRegion=azure_region)
 
-def voice_record_complete( event):
+
+def voice_record_complete(event):
     print("vrc", event)
     if "message" in event:
         message = event["message"]
@@ -59,16 +60,10 @@ def voice_record_complete( event):
         print(f"misty heard: {result}")
 
         if settings["useScript"]:
-            response = result
-            if "ja" in result.lower():
-                response = "JA"
-            elif "nee" in result.lower():
-                response = "NEE"
-            script.next_state(response)
-            speak.speak(script.get_text())
+            response = script.get_response(result)
         else:
             response = charAI.get_response(result)
-            speak.speak(response, utteranceId="utterance")
+        speak.speak(response, utteranceId="utterance")
         print(f"misty's response: {response}")
 
 
@@ -85,7 +80,6 @@ def look_at_audio(event):
         print(result.json())
 
 
-# work in progress
 def look_at_face(event):
     global headYaw
     global headPitch
@@ -101,7 +95,6 @@ def look_at_face(event):
         if abs(bearing) > 3:
             newYaw = headYaw + bearing * 2
         misty.move_head(newPitch, 0, newYaw)
-        #time.sleep(0.5)
         detect_emotion_basic()
 
 def detect_emotion_basic():
@@ -110,9 +103,10 @@ def detect_emotion_basic():
     b64 = result.json()['result']['base64']
     nparr = np.fromstring(base64.b64decode(b64), np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    analysis = DeepFace.analyze(img, actions=("emotion"))
+    analysis = DeepFace.analyze(img, actions="emotion")
     emotion = analysis[0]["dominant_emotion"]
-    display_emotion(emotion) #mimic detected emotion
+    if settings["mimicEmotion"]:
+        display_emotion(emotion) #mimic detected emotion
     print(emotion)
 
 def display_emotion(emotion):
@@ -153,11 +147,6 @@ def update_position_body(event):
         message = event["message"]
         bodyYaw = message["yaw"]
 
-
-
-
-
-# called after misty hears "hey misty" for the first time
 def start_session():
     misty.stop_object_detector()
     misty.stop_face_detection()
@@ -171,7 +160,10 @@ def start_session():
     #misty.register_event(Events.SourceTrackDataMessage, "audiolocalization", keep_alive=True, debounce=2000, callback_function=look_at_audio)
     misty.register_event(Events.IMU, "imu", keep_alive=True, debounce=1000, callback_function=update_position_body)
     print("starting session")
-    speak.speak(script.get_text())
+    if settings["useScript"]:
+        speak.speak(script.get_text())
+    else:
+        speak.speak("Hallo! Wat leuk dat je even de tijd neemt om met me te praten. Mijn naam is Misty, wat is jouw naam?")
     misty.start_face_detection()
 
 

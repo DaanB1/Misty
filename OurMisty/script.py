@@ -11,11 +11,9 @@ class Script():
             self.name = None
 
     def get_text(self):
-        print("getting text")
         return self.script[self.state]["message"].format(name=self.name)
 
     def next_state(self, response):
-        print("updating state")
         if self.state == "start" or self.state == "wrong_name":
             self.name = response
             self.state = "name_given"
@@ -24,5 +22,14 @@ class Script():
                 if option["response"] in response:
                     self.state = option["next"]
                     return
-            print("NO STATE FOUND")
+            print("User's answer does not match any responses defined in the script")
+
+    def get_response(self, speech_result):
+        response = speech_result
+        if "ja" in speech_result.lower():
+            response = "JA"
+        elif "nee" in speech_result.lower():
+            response = "NEE"
+        self.next_state(response)
+        return self.get_text()
 
