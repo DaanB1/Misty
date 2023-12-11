@@ -13,10 +13,10 @@ import base64
 azure_key = "5cea5747535f427b889651b335da74f7"
 azure_region = "westeurope"
 misty = Robot("192.168.2.92")
-misty.set_default_volume(30)
+misty.set_default_volume(20)
 
 script = Script()
-settings = {"useScript": True, "useMaleVoice": True, "mimicEmotion": True}
+settings = {"useScript": True, "useMaleVoice": True, "mimicEmotion": False}
 
 
 
@@ -141,11 +141,13 @@ def update_position_head(event):
         if message["sensorId"] == "ahp":
             headPitch = message["value"]
 
+
 def update_position_body(event):
     global bodyYaw
     if "message" in event:
         message = event["message"]
         bodyYaw = message["yaw"]
+
 
 def start_session():
     misty.stop_object_detector()
@@ -160,6 +162,7 @@ def start_session():
     #misty.register_event(Events.SourceTrackDataMessage, "audiolocalization", keep_alive=True, debounce=2000, callback_function=look_at_audio)
     misty.register_event(Events.IMU, "imu", keep_alive=True, debounce=1000, callback_function=update_position_body)
     print("starting session")
+    misty.cancel_skill("cloud_connector")
     if settings["useScript"]:
         speak.speak(script.get_text())
     else:

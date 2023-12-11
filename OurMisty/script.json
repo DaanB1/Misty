@@ -3,16 +3,16 @@
     "message": "Hallo! Wat leuk dat je even de tijd neemt om met me te praten. Mijn naam is Misty, wat is jouw naam?",
     "options": [
       {
-        "response": "{name}",
+        "keywords": [],
         "next": "name_given"
       }
     ]
   },
   "wrong_name": {
-    "message": "Sorry, dan heb ik je verkeerd verstaan. Kan je dat herhalen?",
+    "message": "Sorry, dan heb ik je verkeerd verstaan. Kan je jouw naam herhalen?",
     "options": [
       {
-        "response": "{name}",
+        "keywords": [],
         "next": "name_given"
       }
     ]
@@ -21,46 +21,25 @@
     "message": "Is je naam {name}?",
     "options": [
       {
-        "response": "JA",
-        "next": "meet_at_university"
-      },
-      {
-        "response": "NEE",
+        "keywords": ["nee", "niet", "no", "geen"],
         "next": "wrong_name"
       },
       {
-        "response": "",
-        "next": "yes_or_no_name"
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "where_study"
       }
     ]
   },
-  "yes_or_no_name": {
-    "message": "Sorry, geef alsjeblieft antwoord met 'ja' of 'nee'",
-    "options": [
-      {
-        "response": "JA",
-        "next": "meet_at_university"
-      },
-      {
-        "response": "NEE",
-        "next": "wrong_name"
-      },
-      {
-        "response": "",
-        "next": "yes_or_no_name"
-      }
-    ]
-  },
-  "meet_at_university": {
+  "where_study": {
     "message": "Leuk je te ontmoeten {name}! Studeer jij aan de Radboud Universiteit?",
     "options": [
       {
-        "response": "JA",
-        "next": "explain_studies"
+        "keywords": ["nee", "niet", "no","geen"],
+        "next": "study_location"
       },
       {
-        "response": "NEE",
-        "next": "study_location"
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "explain_studies"
       }
     ]
   },
@@ -68,7 +47,7 @@
     "message": "Waar studeer je dan?",
     "options": [
       {
-        "response": "",
+        "keywords": [],
         "next": "enjoy_studies"
       }
     ]
@@ -77,7 +56,7 @@
     "message": "Wat leuk! Leg eens wat uit over de studie die je doet?",
     "options": [
       {
-        "response": "",
+        "keywords": [],
         "next": "enjoy_studies"
       }
     ]
@@ -86,33 +65,12 @@
     "message": "Interessant! Heb je het naar je zin in je studie?",
     "options": [
       {
-        "response": "JA",
-        "next": "good"
-      },
-      {
-        "response": "NEE",
+        "keywords": ["nee", "niet", "no","geen"],
         "next": "compassion"
       },
       {
-        "response": "",
-        "next": "yes_or_no_study"
-      }
-    ]
-  },
-  "yes_or_no_study": {
-    "message": "Sorry, geef alsjeblieft antwoord met 'ja' of 'nee'",
-    "options": [
-      {
-        "response": "JA",
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
         "next": "good"
-      },
-      {
-        "response": "NEE",
-        "next": "compassion"
-      },
-      {
-        "response": "",
-        "next": "yes_or_no_study"
       }
     ]
   },
@@ -120,7 +78,7 @@
     "message": "Goed om te horen! Dat is belangrijk voor een goed verloop van je studie. Heb je al een idee wat je wilt gaan doen na je studie?",
     "options": [
       {
-        "response": "",
+        "keywords": [],
         "next": "end"
       }
     ]
@@ -129,12 +87,12 @@
     "message": "Wat jammer, ik hoop voor je dat het in de toekomst beter wordt. Heb je al een idee wat je wilt gaan doen na je studie?",
     "options": [
       {
-        "response": "",
+        "keywords": [],
         "next": "end"
       }
     ]
   },
-  "future_plans": {
+  "end": {
     "message": "Duidelijk! Dankjewel voor je antwoord, ik weet genoeg. Nogmaals bedankt voor het gesprek, en tot ziens!",
     "options": []
   }
