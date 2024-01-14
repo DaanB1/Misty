@@ -21,7 +21,7 @@
     "message": "Is je naam {name}?",
     "options": [
       {
-        "keywords": ["nee", "niet", "no", "geen"],
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
         "next": "wrong_name"
       },
       {
@@ -34,7 +34,7 @@
     "message": "Leuk je te ontmoeten {name}! Studeer jij aan de Radboud Universiteit?",
     "options": [
       {
-        "keywords": ["nee", "niet", "no","geen"],
+        "keywords": ["nee", "niet", "no","geen", "nooit"],
         "next": "study_location"
       },
       {
@@ -65,7 +65,7 @@
     "message": "Interessant! Heb je het naar je zin in je studie?",
     "options": [
       {
-        "keywords": ["nee", "niet", "no","geen"],
+        "keywords": ["nee", "niet", "no","geen", "nooit"],
         "next": "compassion"
       },
       {

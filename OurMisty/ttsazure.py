@@ -1,7 +1,7 @@
 
 import azure.cognitiveservices.speech as speechsdk
 import base64
-import os
+import time
 
 class CustomSpeak():
 
@@ -14,6 +14,7 @@ class CustomSpeak():
         else:
             speech_config.speech_synthesis_voice_name = "nl-NL-FennaNeural"
         self.speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=None)
+        self.messageQueue = []
         self.misty = misty
 
     def speak(self, text, **kwargs):
@@ -31,4 +32,6 @@ class CustomSpeak():
                 if cancellation_details.error_details:
                     print("Error details: {}".format(cancellation_details.error_details))
             print("Did you update the subscription info?")
+
+
 

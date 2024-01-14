@@ -1,0 +1,121 @@
+{
+  "start": {
+    "message": "Laten we samen werken aan manieren om met angst om te gaan tijdens het spreken in het openbaar. Het is heel normaal als er spanning of angst ontstaat als je dit moet doen. Zou het kunnen dat de spanning gedeeltelijk komt door angst om fouten te maken?",
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "next": "clarify"
+      },
+      {
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "remark": "Dat snap ik heel goed. Deze angst is heel normaal, gelukkig maken mensen vaker fouten, en weet je publiek dat ook.",
+        "next": "continue"
+      }
+    ]
+  },
+  "clarify": {
+    "message": "Heb je enig idee waar de spanning wel door zou kunnen komen?",
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "remark": "Geen enkel probleem, het is heel logisch dat je dat niet precies weet.",
+        "next": "continue"
+      },
+      {
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "tension"
+      }
+    ]
+  },
+  "tension": {
+    "message": "Dat is goed om te horen! Weten waar je angst uit voortkomt kan je helpen met hem tegengaan. Probeer het alsjeblieft voor me te beschrijven.",
+    "options": [
+      {
+        "keywords": [],
+        "remark": "Dankjewel! Dat is voor mij helemaal duidelijk.",
+        "next": "continue"
+      }
+    ]
+  },
+  "continue": {
+    "message": "Laten we wat gaan oefenen om beter met de spanning te leren omgaan. Bedenk een onderwerp waar je veel over weet, dit mag van alles zijn. Heb je iets in gedachten?",
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "next": "think"
+      },
+      {
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "subject"
+      }
+    ]
+  },
+  "think": {
+    "message": ["Maakt niet uit, dan geef ik je nog even om na te denken!", "#10", "Weet je al iets?"],
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "next": "think"
+      },
+      {
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "subject"
+      }
+    ]
+  },
+  "subject": {
+    "message": ["Ik zou je nu graag willen vragen om je voor te stellen dat je voor een publiek staat en jezelf en je onderwerp moet introduceren. Het is heel begrijpelijk als dit lastig gaat met alleen mij als je publiek, dus kijk maar hoe ver je komt! Ga je gang.", "#5"],
+    "options": [
+      {
+        "keywords": [],
+        "next": "good_job"
+      }
+    ]
+  },
+  "good_job": {
+    "message": "Hartstikke goed gedaan. Als dit in een echte situatie spanning oplevert, kan het mogelijk helpen om op je ademhaling te letten. Probeer diep adem te halen, houd het even vast en adem dan langzaam uit. Denk je dat dit je zou kunnen helpen?",
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "remark": "Dat kan natuurlijk, voor ieder persoon werkt iets anders. Gelukkig zijn er ook andere middelen tegen zenuwen.",
+        "next": "other"
+      },
+      {
+        "keywords": ["ja", "oké","inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "good_to_hear"
+      }
+    ]
+  },
+  "good_to_hear": {
+    "message": "Dat is fijn om te horen. Ademhalen kan helpen je zenuwen te kalmeren. Zou je nog een strategie willen horen om met je zenuwen om te gaan?",
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "next": "end"
+      },
+      {
+        "keywords": ["ja", "oké", "goed","inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "other"
+      }
+    ]
+  },
+  "other": {
+    "message": "Een andere manier om zenuwen te kalmeren is door te focussen op positieve gedachten. Denk aan momenten waarop je succesvol was of complimenten hebt ontvangen. Komt er iets in je op?",
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "remark": "Geen probleem, kijk of je voor de volgende keer dat je in het openbaar moet spreken iets kan bedenken, om zo je zenuwen te kalmeren.",
+        "next": "end"
+      },
+      {
+        "keywords": ["ja", "oké", "goed","inderdaad", "klopt", "yes", "zeker", "wel"],
+        "remark": "Heel goed, probeer hier voor de volgende keer dat je in het openbaar moet spreken aan te denken. Hopelijk kalmeert dat je zenuwen.",
+        "next": "end"
+      }
+    ]
+  },
+  "end": {
+    "message": "We zijn al bij het einde aangekomen! Bedankt voor je inzet, en vergeet niet dat niemand perfect is. Probeer je te concentreren op je boodschap en niet op jezelf. Kleine foutjes zijn normaal, en dat weet je publiek ook. Tot de volgende keer!",
+    "options": []
+  }
+}
