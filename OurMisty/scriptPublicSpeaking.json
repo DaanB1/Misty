@@ -115,7 +115,12 @@
     ]
   },
   "end": {
-    "message": "We zijn al bij het einde aangekomen! Bedankt voor je inzet, en vergeet niet dat niemand perfect is. Probeer je te concentreren op je boodschap en niet op jezelf. Kleine foutjes zijn normaal, en dat weet je publiek ook. Tot de volgende keer!",
-    "options": []
+    "message": "Bedankt voor je inzet, en vergeet niet dat niemand perfect is. Probeer je te concentreren op je boodschap en niet op jezelf. Kleine foutjes zijn normaal, en dat weet je publiek ook.",
+    "options": [
+      {
+        "keywords": [],
+        "loadScript": "scriptClosing.json"
+      }
+    ]
   }
 }

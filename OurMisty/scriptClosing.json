@@ -1,0 +1,29 @@
+{
+  "start": {
+    "message": "Dan wil ik het hierbij houden voor vandaag. Hoe vond je het gaan?",
+    "options": [
+      {
+        "keywords": ["slecht", "niet"],
+        "next": "bad"
+      },
+      {
+        "keywords": ["goed", "fijn", "positief", "super", "redelijk", "prima", "fantastisch", "geweldig"],
+        "remark": "Fijn om te horen!",
+        "next": "end"
+      }
+    ]
+  },
+  "bad": {
+    "message": "Vervelend om te horen. Is er iets wat je graag veranderd ziet in een volgende sessie?",
+    "options": [
+      {
+        "keywords": [],
+        "next": "end"
+      }
+    ]
+  },
+  "end": {
+    "message": "Bedankt voor je tijd {name}, tot de volgende keer!",
+    "options": []
+  }
+}

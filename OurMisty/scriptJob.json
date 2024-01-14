@@ -35,7 +35,7 @@
     ]
   },
   "work": {
-    "message": "Leuk je te ontmoeten, ik ben Misty. In welk werkveld zoek je werk?",
+    "message": "Leuk je te ontmoeten {name}, ik ben Misty. In welk werkveld zoek je werk?",
     "options": [
       {
         "keywords": [],
@@ -75,38 +75,9 @@
     "options": [
       {
         "keywords": [],
-        "next": "good"
+        "remark": "Goed. Het is altijd belangrijk om een goed beeld te vormen van het bedrijf. Dit kan bijvoorbeeld door te vragen naar de sfeer op het kantoor, hoe een gemiddelde werkdag er uitziet of hoeveel je met collega’s in aanraking komt tijdens een werkdag.",
+        "loadScript": "scriptClosing.json"
       }
     ]
-  },
-  "good": {
-    "message": ["Goed. Het is altijd belangrijk om een goed beeld te vormen van het bedrijf. Dit kan bijvoorbeeld door te vragen naar de sfeer op het kantoor, hoe een gemiddelde werkdag er uitziet of hoeveel je met collega’s in aanraking komt tijdens een werkdag.", "0.5", "Dan wil ik het hierbij houden voor vandaag. Hoe vond je het gaan?"],
-    "options": [
-      {
-        "keywords": ["slecht", "niet"],
-        "next": "sad"
-      },
-      {
-        "keywords": ["goed", "fijn", "positief", "super", "redelijk", "prima", "fantastisch", "geweldig"],
-        "next": "great"
-      }
-    ]
-  },
-  "sad": {
-    "message": "Vervelend om te horen. Is er iets wat je graag veranderd ziet in een volgende sessie?",
-    "options": [
-      {
-        "keywords": [],
-        "next": "feedback"
-      }
-    ]
-  },
-  "feedback": {
-    "message": "Duidelijk. Tot de volgende keer!",
-    "options": []
-  },
-  "great": {
-    "message": "Fijn om te horen! Ik zie je graag terug in een volgende sessie.",
-    "options": []
   }
 }

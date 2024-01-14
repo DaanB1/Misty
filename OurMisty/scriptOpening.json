@@ -1,0 +1,107 @@
+{
+  "start": {
+    "message": "Misty: Hallo! Ik ben Misty, een robot die ontworpen is om sociale situaties te oefenen die door veel mensen als moeilijk worden ervaren. Ik wil vandaag een scenario met je doorlopen! Wat is je naam?",
+    "options": [
+      {
+        "keywords": [],
+        "next": "name_given"
+      }
+    ]
+  },
+  "wrong_name": {
+    "message": "Sorry, dan heb ik je verkeerd verstaan. Kan je jouw naam herhalen?",
+    "options": [
+      {
+        "keywords": [],
+        "next": "name_given"
+      }
+    ]
+  },
+  "name_given": {
+    "message": "Is je naam {name}?",
+    "options": [
+      {
+        "keywords": ["nee", "niet", "no", "geen", "nooit"],
+        "next": "wrong_name"
+      },
+      {
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "icebreaker"
+      }
+    ]
+  },
+  "icebreaker": {
+    "message": "Laten we beginnen met een eenvoudige ijsbreker. Stel je voor dat je in een groep mensen bent die je niet kent. Wat zou je zeggen om het gesprek te openen?",
+    "options": [
+      {
+        "keywords": [],
+        "next": "answer"
+      }
+    ]
+  },
+  "answer": {
+    "message": "Geweldige keuze, {name}! Dat is een vriendelijke en open vraag. Bedenk nu, wat zou iemands antwoord daarop zijn?",
+    "options": [
+      {
+        "keywords": [],
+        "remark": "Uitstekend!",
+        "next": "party"
+      }
+    ]
+  },
+  "party": {
+    "message": "Nu, laten we een andere situatie proberen. Stel je voor dat je op een feestje bent en je wilt een groepje mensen aanspreken. Wat zou je zeggen?",
+    "options": [
+      {
+        "keywords": [],
+        "next": "reaction"
+      }
+    ]
+  },
+  "reaction": {
+    "message": "Wat zou iemands reactie daarop zijn?",
+    "options": [
+      {
+        "keywords": [],
+        "remark": "Dankewel, Dat is duidelijk!",
+        "next": "exercise"
+      }
+    ]
+  },
+  "exercise": {
+    "message": "Ik wil nu door met een andere situatie - wat wil je behandelen? Het voorbereiden van spreken voor een groep of het voorbereiden van een sollicitatiegesprek?",
+    "options": [
+      {
+        "keywords": ["spreken", "groep", "speaking", "public", "publiek"],
+        "loadScript": "scriptPublicSpeaking.json"
+      },
+      {
+        "keywords": ["solicitatie", "gesprek", "sollicitatiegesprek", "interview"],
+        "loadScript": "scriptJob.json"
+      },
+      {
+        "keywords": [],
+        "next": "repeat"
+      }
+    ]
+  },
+  "repeat": {
+    "message": "Sorry, kan je dat herhalen?",
+    "options": [
+      {
+        "keywords": ["spreken", "groep", "speaking", "public", "publiek"],
+        "remark": "Oké",
+        "loadScript": "scriptPublicSpeaking.json"
+      },
+      {
+        "keywords": ["solicitatie", "gesprek", "sollicitatiegesprek", "interview", "baan", "job"],
+        "remark": "Oké",
+        "loadScript": "scriptJob.json"
+      },
+      {
+        "keywords": [],
+        "next": "repeat"
+      }
+    ]
+  }
+}

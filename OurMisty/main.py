@@ -14,7 +14,7 @@ azure_region = "westeurope"
 misty = Robot("192.168.237.213")
 misty.set_default_volume(25)
 
-script_file = "scriptJob.json"
+script_file = "scriptOpening.json"
 script = Script(script_file)
 settings = {"useScript": True, "useMaleVoice": False, "mimicEmotion": False, "lookAtFace": True}
 
@@ -37,7 +37,7 @@ charAI = CharAI()
 
 # This function enables misty to speak multiple lines with pauses between them
 def speak(messages):
-    if isinstance(messages, list):
+    if isinstance(messages, ):
         messageQueue.extend(messages)
     else:
         messageQueue.append(messages)
