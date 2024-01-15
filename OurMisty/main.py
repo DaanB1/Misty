@@ -11,14 +11,15 @@ import base64
 
 azure_key = "5cea5747535f427b889651b335da74f7"
 azure_region = "westeurope"
-misty = Robot("192.168.237.213")
-misty.set_default_volume(25)
+#misty = Robot("192.168.237.213")
+misty = Robot("192.168.2.92")
+misty.set_default_volume(15)
 
-script_file = "scriptOpening.json"
+script_file = "scriptPublicSpeaking.json"
 script = Script(script_file)
-settings = {"useScript": True, "useMaleVoice": False, "mimicEmotion": False, "lookAtFace": True}
+settings = {"useScript": True, "useMaleVoice": True, "mimicEmotion": False, "detectEmotion": False, "lookAtFace": False}
 
-# speakModule = misty #for built in voice
+#speakModule = misty #for built in voice
 speakModule = CustomSpeak(misty, azure_key, azure_region, male=settings["useMaleVoice"])  # for custom voice
 messageQueue = []
 
@@ -36,26 +37,33 @@ charAI = CharAI()
 
 
 # This function enables misty to speak multiple lines with pauses between them
-def speak(messages):
-    if isinstance(messages, ):
+def speak_all(messages):
+    if isinstance(messages, list):
         messageQueue.extend(messages)
     else:
         messageQueue.append(messages)
+    speak_from_queue()
 
-    while len(messageQueue) != 0:
-        text = messageQueue.pop()
-        if text.startswith("#"):
-            time.sleep(int(text.lstip(1)))
+def speak_from_queue():
+    text = messageQueue.pop(0)
+    if text.startswith("#"):
+        time.sleep(int(text.lstrip("#")))
+        if len(messageQueue) == 0:
+            misty.capture_speech_azure(speechRecognitionLanguage="nl-NL", azureSpeechKey=azure_key,
+                                       azureSpeechRegion=azure_region)
         else:
-            if len(messageQueue) == 0:
-                misty.register_event(Events.AudioPlayComplete, "ttscomplete", callback_function=tts_complete)
-            speakModule.speak(text, utteranceId="utterance")
+            speak_from_queue()
+    else:
+        speakModule.speak(text, utteranceId="utterance")
+
 
 
 def tts_complete(event):
     print("tts", event)
-    misty.register_event(Events.VoiceRecord, "voicerecord", callback_function=voice_record_complete)
-    misty.capture_speech_azure(speechRecognitionLanguage="nl-NL", azureSpeechKey=azure_key,
+    if len(messageQueue) > 0:
+        speak_from_queue()
+    else:
+        misty.capture_speech_azure(speechRecognitionLanguage="nl-NL", azureSpeechKey=azure_key,
                                azureSpeechRegion=azure_region)
 
 
@@ -64,7 +72,7 @@ def voice_record_complete(event):
     if "message" in event:
         message = event["message"]
         if not message["success"]:
-            speak("Sorry, kan je dat herhalen?")
+            speak_all("Sorry, kan je dat herhalen?")
             return
         result = message["speechRecognitionResult"]
         print(f"misty heard: {result}")
@@ -73,7 +81,7 @@ def voice_record_complete(event):
             response = script.get_response(result)
         else:
             response = charAI.get_response(result)
-        speak(response)
+        speak_all(response)
         print(f"misty's response: {response}")
 
 
@@ -107,7 +115,8 @@ def look_at_face(event):
         if abs(bearing) > 3:
             newYaw = headYaw + bearing * 2
         misty.move_head(newPitch, 0, newYaw)
-        detect_emotion_basic()
+        if settings["detectEmotion"]:
+            detect_emotion_basic()
 
 
 def detect_emotion_basic():
@@ -168,8 +177,8 @@ def start_session():
     misty.stop_face_detection()
     misty.unregister_all_events()
     misty.start_action("body-reset", useVisionData=False)
-    # misty.register_event(Events.VoiceRecord, "voicerecord", callback_function=voice_record_complete)
-    misty.register_event(Events.AudioPlayComplete, "ttscomplete", callback_function=tts_complete)
+    misty.register_event(Events.VoiceRecord, "voicerecord", keep_alive=True, callback_function=voice_record_complete)
+    misty.register_event(Events.AudioPlayComplete, "ttscomplete", keep_alive=True, callback_function=tts_complete)
     # misty.register_event(Events.TextToSpeechComplete, "ttscomplete2", keep_alive=True, callback_function=tts_complete)
     misty.register_event(Events.ActuatorPosition, "actuatorposition", keep_alive=True,
                          callback_function=update_position_head)
@@ -180,9 +189,9 @@ def start_session():
     print("starting session")
     misty.cancel_skill("cloud_connector")
     if settings["useScript"]:
-        speak(script.get_text())
+        speak_all(script.get_text())
     else:
-        speak("Hallo! Wat leuk dat je even de tijd neemt om met me te praten. Mijn naam is Misty, wat is jouw naam?")
+        speak_all("Hallo! Wat leuk dat je even de tijd neemt om met me te praten. Mijn naam is Misty, wat is jouw naam?")
     misty.start_face_detection()
 
 

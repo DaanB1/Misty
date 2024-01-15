@@ -7,7 +7,7 @@
         "next": "clarify"
       },
       {
-        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel", "kunnen"],
         "remark": "Dat snap ik heel goed. Deze angst is heel normaal, gelukkig maken mensen vaker fouten, en weet je publiek dat ook.",
         "next": "continue"
       }
@@ -59,6 +59,10 @@
       },
       {
         "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "subject"
+      },
+      {
+        "keywords": [],
         "next": "subject"
       }
     ]
@@ -119,7 +123,8 @@
     "options": [
       {
         "keywords": [],
-        "loadScript": "scriptClosing.json"
+        "loadScript": "scriptClosing.json",
+        "next": "start"
       }
     ]
   }

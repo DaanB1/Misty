@@ -14,7 +14,6 @@ class CustomSpeak():
         else:
             speech_config.speech_synthesis_voice_name = "nl-NL-FennaNeural"
         self.speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=None)
-        self.messageQueue = []
         self.misty = misty
 
     def speak(self, text, **kwargs):

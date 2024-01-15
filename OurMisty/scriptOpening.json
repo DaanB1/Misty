@@ -1,6 +1,6 @@
 {
   "start": {
-    "message": "Misty: Hallo! Ik ben Misty, een robot die ontworpen is om sociale situaties te oefenen die door veel mensen als moeilijk worden ervaren. Ik wil vandaag een scenario met je doorlopen! Wat is je naam?",
+    "message": "Hallo! Ik ben Misty, een robot die ontworpen is om sociale situaties te oefenen die door veel mensen als moeilijk worden ervaren. Ik wil vandaag een scenario met je doorlopen! Wat is je naam?",
     "options": [
       {
         "keywords": [],
@@ -63,21 +63,25 @@
     "options": [
       {
         "keywords": [],
-        "remark": "Dankewel, Dat is duidelijk!",
+        "remark": "Dankjewel, Dat is duidelijk!",
         "next": "exercise"
       }
     ]
   },
   "exercise": {
-    "message": "Ik wil nu door met een andere situatie - wat wil je behandelen? Het voorbereiden van spreken voor een groep of het voorbereiden van een sollicitatiegesprek?",
+    "message": "Ik wil nu door met een andere situatie. Wat wil je behandelen? Het voorbereiden van spreken voor een groep of het voorbereiden van een sollicitatiegesprek?",
     "options": [
       {
         "keywords": ["spreken", "groep", "speaking", "public", "publiek"],
-        "loadScript": "scriptPublicSpeaking.json"
+        "remark": "oke",
+        "loadScript": "scriptPublicSpeaking.json",
+        "next": "start"
       },
       {
         "keywords": ["solicitatie", "gesprek", "sollicitatiegesprek", "interview"],
-        "loadScript": "scriptJob.json"
+        "remark": "oke",
+        "loadScript": "scriptJob.json",
+        "next": "start"
       },
       {
         "keywords": [],
@@ -90,12 +94,12 @@
     "options": [
       {
         "keywords": ["spreken", "groep", "speaking", "public", "publiek"],
-        "remark": "Oké",
+        "remark": "Oke",
         "loadScript": "scriptPublicSpeaking.json"
       },
       {
         "keywords": ["solicitatie", "gesprek", "sollicitatiegesprek", "interview", "baan", "job"],
-        "remark": "Oké",
+        "remark": "Oke",
         "loadScript": "scriptJob.json"
       },
       {

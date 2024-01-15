@@ -3,25 +3,25 @@
     "message": "We gaan samen een sollicitatiegesprek nabootsen. In dit scenario zal ik de medewerker van een bedrijf spelen en ben jij de sollicitant. We kunnen op elk moment stoppen als je dat wil, maar ik hoop samen het gesprek door te kunnen lopen. Zullen we beginnen?",
     "options": [
       {
-        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
-        "next": "startyes"
-      },
-      {
         "keywords": ["nee", "niet", "no", "geen", "nooit"],
         "next": "startno"
+      },
+      {
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "startyes"
       }
     ]
   },
   "startno": {
     "message": ["Oke, ik snap het als je wat tijd nodig hebt. Ik wacht even tot je er klaar voor bent.", "#10", "Hallo, daar ben ik weer. Ben je klaar om een sollicitatiegesprek na te bootsen? Onthou dat we op elk moment kunnen stoppen als je dat wil."],
     "options": [
-        {
-        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
-        "next": "startyes"
-      },
       {
         "keywords": ["nee", "niet", "no", "geen", "nooit"],
         "next": "startno"
+      },
+      {
+        "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
+        "next": "startyes"
       }
     ]
   },
@@ -71,12 +71,13 @@
     ]
   },
   "thanks": {
-    "message": ["Bedankt voor het delen. Dit waren alle vragen die ik voor je had.", "#0.5", "Meestal krijg je tijdens een sollicitatie ook de kans om vragen te stellen aan de recruiter, dit is een goede kans om te laten zien dat je geïnteresseerd bent in het werk.. Kan je twee vragen verzinnen die relevant zouden zijn om te stellen?"],
+    "message": ["Bedankt voor het delen. Dit waren alle vragen die ik voor je had.", "Meestal krijg je tijdens een sollicitatie ook de kans om vragen te stellen aan de recruiter, dit is een goede kans om te laten zien dat je geïnteresseerd bent in het werk.. Kan je twee vragen verzinnen die relevant zouden zijn om te stellen?"],
     "options": [
       {
         "keywords": [],
         "remark": "Goed. Het is altijd belangrijk om een goed beeld te vormen van het bedrijf. Dit kan bijvoorbeeld door te vragen naar de sfeer op het kantoor, hoe een gemiddelde werkdag er uitziet of hoeveel je met collega’s in aanraking komt tijdens een werkdag.",
-        "loadScript": "scriptClosing.json"
+        "loadScript": "scriptClosing.json",
+        "next": "start"
       }
     ]
   }
