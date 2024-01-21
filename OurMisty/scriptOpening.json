@@ -40,7 +40,7 @@
     ]
   },
   "answer": {
-    "message": "Geweldige keuze, {name}! Dat is een vriendelijke en open vraag. Bedenk nu, wat zou iemands antwoord daarop zijn?",
+    "message": "Geweldige keuze, {name}! Dat is vriendelijk en open. Bedenk nu, wat zou iemands antwoord daarop zijn?",
     "options": [
       {
         "keywords": [],
@@ -69,10 +69,10 @@
     ]
   },
   "exercise": {
-    "message": "Ik wil nu door met een andere situatie. Wat wil je behandelen? Het voorbereiden van spreken voor een groep of het voorbereiden van een sollicitatiegesprek?",
+    "message": "Ik wil nu door met een andere situatie. Wat wil je behandelen? Het voorbereiden van spreken in het openbaar of het voorbereiden van een sollicitatiegesprek?",
     "options": [
       {
-        "keywords": ["spreken", "groep", "speaking", "public", "publiek"],
+        "keywords": ["spreken", "groep", "speaking", "public", "publiek", "openbaar"],
         "remark": "oke",
         "loadScript": "scriptPublicSpeaking.json",
         "next": "start"

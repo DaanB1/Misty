@@ -9,15 +9,15 @@ import cv2
 import time
 import base64
 
-azure_key = "5cea5747535f427b889651b335da74f7"
+azure_key = None #Insert your Azure key here
 azure_region = "westeurope"
-#misty = Robot("192.168.237.213")
-misty = Robot("192.168.2.92")
-misty.set_default_volume(15)
+ip_address = None #Insert Misty's IP-address here
+misty = Robot(ip_address)
+misty.set_default_volume(45)
 
-script_file = "scriptPublicSpeaking.json"
+script_file = "scriptOpening.json"
 script = Script(script_file)
-settings = {"useScript": True, "useMaleVoice": True, "mimicEmotion": False, "detectEmotion": False, "lookAtFace": False}
+settings = {"useScript": True, "useMaleVoice": True, "mimicEmotion": False, "detectEmotion": False, "lookAtFace": True}
 
 #speakModule = misty #for built in voice
 speakModule = CustomSpeak(misty, azure_key, azure_region, male=settings["useMaleVoice"])  # for custom voice
@@ -36,7 +36,7 @@ displayed_emotion = "neutral"
 charAI = CharAI()
 
 
-# This function enables misty to speak multiple lines with pauses between them
+# This function enables misty to speak multiple lines with pauses between them by adding a list of messages to the queue
 def speak_all(messages):
     if isinstance(messages, list):
         messageQueue.extend(messages)
@@ -44,6 +44,7 @@ def speak_all(messages):
         messageQueue.append(messages)
     speak_from_queue()
 
+# This function takes a string from the queue and speaks it.
 def speak_from_queue():
     text = messageQueue.pop(0)
     if text.startswith("#"):
@@ -55,7 +56,6 @@ def speak_from_queue():
             speak_from_queue()
     else:
         speakModule.speak(text, utteranceId="utterance")
-
 
 
 def tts_complete(event):
@@ -179,7 +179,7 @@ def start_session():
     misty.start_action("body-reset", useVisionData=False)
     misty.register_event(Events.VoiceRecord, "voicerecord", keep_alive=True, callback_function=voice_record_complete)
     misty.register_event(Events.AudioPlayComplete, "ttscomplete", keep_alive=True, callback_function=tts_complete)
-    # misty.register_event(Events.TextToSpeechComplete, "ttscomplete2", keep_alive=True, callback_function=tts_complete)
+    misty.register_event(Events.TextToSpeechComplete, "ttscomplete2", keep_alive=True, callback_function=tts_complete)
     misty.register_event(Events.ActuatorPosition, "actuatorposition", keep_alive=True,
                          callback_function=update_position_head)
     misty.register_event(Events.FaceRecognition, "facedetection", keep_alive=True, debounce=1000,

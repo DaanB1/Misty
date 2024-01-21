@@ -7,7 +7,7 @@
         "next": "bad"
       },
       {
-        "keywords": ["goed", "fijn", "positief", "super", "redelijk", "prima", "fantastisch", "geweldig"],
+        "keywords": ["goed", "fijn", "positief", "super", "redelijk", "prima", "fantastisch", "geweldig", "top"],
         "remark": "Fijn om te horen!",
         "next": "end"
       }

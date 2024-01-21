@@ -71,7 +71,7 @@
     ]
   },
   "thanks": {
-    "message": ["Bedankt voor het delen. Dit waren alle vragen die ik voor je had.", "Meestal krijg je tijdens een sollicitatie ook de kans om vragen te stellen aan de recruiter, dit is een goede kans om te laten zien dat je geïnteresseerd bent in het werk.. Kan je twee vragen verzinnen die relevant zouden zijn om te stellen?"],
+    "message": ["Bedankt voor het delen. Dit waren alle vragen die ik voor je had.", "Meestal krijg je tijdens een sollicitatie ook de kans om vragen te stellen aan de recruiter, dit is een goede kans om te laten zien dat je geinteresseerd bent in het werk. Kan je een vraag verzinnen die relevant zou zijn om te stellen?"],
     "options": [
       {
         "keywords": [],

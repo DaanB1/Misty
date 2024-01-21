@@ -47,6 +47,10 @@
       {
         "keywords": ["ja", "inderdaad", "klopt", "yes", "zeker", "wel"],
         "next": "subject"
+      },
+      {
+        "keywords": [],
+        "next": "subject"
       }
     ]
   },

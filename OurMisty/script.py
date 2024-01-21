@@ -54,7 +54,7 @@ class Script():
                     if keyword in words:
                         return self.process_option(option)
             print("User's answer does not match any responses defined in the script")
-            #return "Sorry, geef alsjeblieft antwoord met ja of nee."
+            return "Sorry, kan je dat herhalen?"
 
     def process_option(self, option):
         result = []
